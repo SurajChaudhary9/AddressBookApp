@@ -1,15 +1,14 @@
-CSS Style sheet
-body{
+CSS Style sheet body {
     margin: 0;
     height: 100%;
 }
 
-.header{
+.header {
     padding: 15px 0;
     background-color: #ffffff;
 }
 
-.header-content{
+.header-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,7 +16,7 @@ body{
     border: 0px solid #008CFF;
 }
 
-.logo-content{
+.logo-content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -25,11 +24,11 @@ body{
     width: 80%;
 }
 
-.logo-content-img{
+.logo-content-img {
     border: solid 0px #42515f;
 }
 
-.address-text{
+.address-text {
     font: normal normal bold 20px/25px Montserrat;
     /* font-family: "Montserrat", sans-serif; */
     font-family: corbel;
@@ -38,10 +37,55 @@ body{
     text-transform: capitalize;
 }
 
-.addressbook{
+.addressbook {
     color: black;
 }
 
-*{
-     box-sizing: border-box;
+* {
+    box-sizing: border-box;
+}
+
+/* UC2 css for cancel button */
+.cancel-image {
+    max-width: 30px;
+    max-height: 30px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px black;
+    cursor: pointer;
+    margin-left: 100px;
+}
+.form-content
+{padding-top: 50px;
+    min-height: calc(100%-80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.form{
+    border: solid 1px black;
+    width: 65%;
+    border-radius: 8px;
+    opacity: 1;
+}
+.form-head{
+    background: #008CFF 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+.header-text{
+    /* border: 1px solid red; */
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    font-family: corbel;
+    font-size: large;
+}
+* {
+    box-sizing: border-box;
 }

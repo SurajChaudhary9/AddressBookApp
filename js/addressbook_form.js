@@ -16,9 +16,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             nameError.textContent = e;
         }
     });
-
-
-
     const phoneElement = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
     phoneElement.addEventListener('input', function () {
@@ -32,13 +29,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-
-
-
 })
 
 const save = (event) => {
-
     try {
         setContactObject();
     } catch (e) {
@@ -48,7 +41,6 @@ const save = (event) => {
 }
 
 const setContactObject = () => {
-    let contactObject = new Contact()
     let names = getInputValueById('#name').split(" ");
     contactObject._firstName = names[0];
     contactObject._lastName = names[1];
@@ -58,7 +50,7 @@ const setContactObject = () => {
     contactObject._zip = getInputValueById('#zip');
     contactObject._phone = getInputValueById('#phone');
     contactObject._email = getInputValueById('#email');
-    alert(contactObject.toString())
+    alert(JSON.stringify(contactObject))
 }
 
 const getInputValueById = (id) => {

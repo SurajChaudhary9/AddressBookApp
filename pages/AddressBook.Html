@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <script  src="/js/addressbook.js"></script>
+    <script src="/js/addressbook.js"></script>
     <script src="/js/addressbook_form.js"></script>
     <title>Address Book</title>
 </head>
@@ -26,11 +26,12 @@
     </header>
 
     <div class="form-content">
-        <form action="#" class="form">
+        <form action="#" class="form" onsubmit="save(event)">
             <div class="form-head-content">
                 <div class="form-head">Person Address Form</div>
                 <div class="form-logo-content">
-                    <a href="./home.html"><img src="/assets/cancel.jpg" style="height: 25px;"></a>
+                    <!-- home.html for redirecting -->
+                    <a href="/pages/home.html"><img src="/assets/cancel.jpg" style="height: 25px;"></a>
                 </div>
             </div>
 
@@ -43,7 +44,7 @@
             <div class="row-content">
                 <label class="label text" for="address">Address</label>
                 <textarea class="input" id="address" name="Address" style="height: 100px;" required></textarea>
-                <error-output class="address-error" for="address"></error-output>
+                <error-output id="address-error" class="address-error" for="address"></error-output>
             </div>
 
             <div class="row-content-exp">
@@ -129,7 +130,7 @@
             </div>
             <div class="add-reset">
                 <button type="submit" class="button addButton" id="addButton">Add</button>
-                <button type="button" onclick="resetForm()" class="resetButton button">Reset</button>
+                <button type="reset" onclick="resetForm()" class="resetButton button">Reset</button>
             </div>
         </form>
     </div>

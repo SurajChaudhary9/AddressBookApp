@@ -16,6 +16,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             nameError.textContent = e;
         }
     });
+
+
+
+
     const phoneElement = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
     phoneElement.addEventListener('input', function () {
@@ -29,11 +33,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
+
+
+
 })
 
 const save = (event) => {
+
     try {
         setContactObject();
+        createAddressBook();
     } catch (e) {
         console.log(e);
         return;
@@ -50,7 +59,22 @@ const setContactObject = () => {
     contactObject._zip = getInputValueById('#zip');
     contactObject._phone = getInputValueById('#phone');
     contactObject._email = getInputValueById('#email');
-    alert(JSON.stringify(contactObject))
+
+}
+
+const createAddressBook = () => {
+    let addressbook = new Contact();
+    let names = getInputValueById('#name').split(" ");
+    addressbook._firstName = names[0];
+    addressbook._lastName = names[1];
+    addressbook._address = getInputValueById('#address');
+    addressbook._city = getInputValueById('#city');
+    addressbook._state = getInputValueById('#state');
+    addressbook._zip = getInputValueById('#zip');
+    addressbook._phone = getInputValueById('#phone');
+    addressbook._email = getInputValueById('#email');
+    alert(addressbook)
+
 }
 
 const getInputValueById = (id) => {

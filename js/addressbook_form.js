@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-
+   
 
     const phoneElement = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
@@ -32,20 +32,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-
+   
 
 })
 
-const save = (event) => {
+const save = (event)=>{
 
-    try {
-        setContactObject();
-        createAddressBook();
-        createAndUpdateStorage();
-    } catch (e) {
-        console.log(e);
-        return;
-    }
+  try{
+    setContactObject();
+    createAndUpdateStorage();
+    // resetForm();
+  }catch(e){
+    console.log(e);
+    return;
+  }
 }
 
 const setContactObject = () => {
@@ -59,11 +59,11 @@ const setContactObject = () => {
     contactObject._phone = getInputValueById('#phone');
     contactObject._email = getInputValueById('#email');
     alert(JSON.stringify(contactObject))
-}
+  }
 
-const createAddressBook = () => {
-    let addressbook = new Contact();
-    let names = getInputValueById('#name').split(" ");
+  const createAddressBook = () =>{
+      let addressbook = new Contact();
+      let names = getInputValueById('#name').split(" ");
     addressbook._firstName = names[0];
     addressbook._lastName = names[1];
     addressbook._address = getInputValueById('#address');
@@ -72,90 +72,114 @@ const createAddressBook = () => {
     addressbook._zip = getInputValueById('#zip');
     addressbook._phone = getInputValueById('#phone');
     addressbook._email = getInputValueById('#email');
+    // alert(addressbook)
 
-}
+  }
 
-const getInputValueById = (id) => {
+  const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
-}
+  }
 
-const createAndUpdateStorage = () => {
+  const createAndUpdateStorage = () => {
     let contactList = JSON.parse(localStorage.getItem("ContactList"));
-    if (contactList) {
+    if(contactList){
         let contactData = contactList.
-            find(contact => contact._id == contactObject._id);
-        if (!contactData)
-            contactList.push(createContactData());
-        else {
+                            find(contact => contact._id == contactObject._id);
+        if(!contactData)
+        contactList.push(createContactData());
+        else{
             const index = contactList.map(cnt => cnt._id)
-                .indexOf(contactData._id);
-            contactList.splice(index, 1, createContactData(contactData._id));
+                                             .indexOf(contactData._id);
+            contactList.splice(index,1,createContactData(contactData._id));
         }
     }
-    else {
-        contactList = [createContactData()];
+    else{
+      contactList = [createContactData()];
     }
-    localStorage.setItem("ContactList", JSON.stringify(contactList));
-}
+    localStorage.setItem("ContactList",JSON.stringify(contactList));
+  }
 
-const createContactData = (id) => {
+  const createContactData = (id) => {
     let contactData = new Contact();
-    if (!id)
-        contactData.id = createNewContactId();
+    if(!id)
+    contactData.id = createNewContactId();
     else
-        contactData.id = id;
+    contactData.id = id;
     setContactData(contactData);
     return contactData;
-}
+  }
 
-const createNewContactId = () => {
+  const createNewContactId = () => {
     let cntID = localStorage.getItem("ContactID");
-    cntID = !cntID ? 1 : (parseInt(cntID) + 1).toString();
-    localStorage.setItem("ContactID", cntID);
+    cntID = !cntID ? 1 : (parseInt(cntID)+1).toString();
+    localStorage.setItem("ContactID",cntID);
     return cntID;
-}
+  }
 
-const setContactData = (contactData) => {
-    try {
-        contactData.firstName = contactObject._firstName;
-    } catch (e) {
-        setTextValue('.name-error', e);
+  const setContactData = (contactData) => {
+    try{
+      contactData.firstName = contactObject._firstName;
+    }catch(e){
+        setTextValue('.name-error',e);
     }
-
-    try {
-        contactData.lastName = contactObject._lastName;
-    } catch (e) {
-        setTextValue('.name-error', e);
+  
+    try{
+      contactData.lastName = contactObject._lastName;
+    }catch(e){
+        setTextValue('.name-error',e);
     }
-
-    try {
-        contactData.address = contactObject._address;
-    } catch (e) {
-        setTextValue('.address-error', e);
+  
+    try{
+      contactData.address = contactObject._address;
+    }catch(e){
+        setTextValue('.address-error',e);
     }
-
+  
     contactData.city = contactObject._city;
     contactData.state = contactObject._state;
     contactData.zip = contactObject._zip;
-
-    try {
-        contactData.phone = contactObject._phone;
-    } catch (e) {
-        setTextValue('.phone-error', e);
+  
+    try{
+      contactData.phone = contactObject._phone;
+    }catch(e){
+        setTextValue('.phone-error',e);
     }
-
-    try {
-        contactData.email = contactObject._email;
-    } catch (e) {
-        setTextValue('.email-error', e);
+  
+    try{
+      contactData.email = contactObject._email;
+    }catch(e){
+        setTextValue('.email-error',e);
     }
-
+  
     alert(contactData.toString());
-}
+  }
+  
 
-
-const setTextValue = (id, value) => {
+  const setTextValue = (id,value) => {
     const element = document.querySelector(id);
     element.textContent = value;
+  }
+
+
+// UC9 RESET 
+
+const resetForm = () => {
+    setValue('#name','');
+    setValue('#address','');
+    setSelectedIndex('#city',0);
+    setSelectedIndex('#state',0);
+    setValue('#zip','');
+    setValue('#phone','');
+    setValue('#email','');
+}
+
+const setValue = (id,value) => {
+  const element = document.querySelector(id);
+  element.value = value;
+}
+
+const setSelectedIndex = (id,index) => {
+  const element = document.querySelector(id);
+  element.selectedIndex = index;
 }
